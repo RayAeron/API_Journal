@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Journal_appModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="discipline">
+          <Key>
+            <PropertyRef Name="id_discipline" />
+          </Key>
+          <Property Name="id_discipline" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_discipline" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_group" Type="int" />
+          <Property Name="id_teacher" Type="int" />
+        </EntityType>
+        <EntityType Name="group">
+          <Key>
+            <PropertyRef Name="id_group" />
+          </Key>
+          <Property Name="id_group" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_group" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Branch_code" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Branch_name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mark">
+          <Key>
+            <PropertyRef Name="id_mark" />
+          </Key>
+          <Property Name="id_mark" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mark" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Date_mark" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_discipline" Type="int" />
+          <Property Name="id_student" Type="int" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pass" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="is_staff" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="id_group" Type="int" />
+        </EntityType>
+        <Association Name="FK__disciplin__id_gr__619B8048">
+          <End Role="group" Type="Self.group" Multiplicity="0..1" />
+          <End Role="discipline" Type="Self.discipline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="discipline">
+              <PropertyRef Name="id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__disciplin__id_te__628FA481">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="discipline" Type="Self.discipline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="discipline">
+              <PropertyRef Name="id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mark__id_discipl__656C112C">
+          <End Role="discipline" Type="Self.discipline" Multiplicity="0..1" />
+          <End Role="mark" Type="Self.mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="discipline">
+              <PropertyRef Name="id_discipline" />
+            </Principal>
+            <Dependent Role="mark">
+              <PropertyRef Name="id_discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mark__id_student__66603565">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="mark" Type="Self.mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="mark">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__id_group__5EBF139D">
+          <End Role="group" Type="Self.group" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Journal_appModelContainer">
+          <EntitySet Name="discipline" EntityType="Self.discipline" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="group" EntityType="Self.group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mark" EntityType="Self.mark" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__disciplin__id_gr__619B8048" Association="Self.FK__disciplin__id_gr__619B8048">
+            <End Role="group" EntitySet="group" />
+            <End Role="discipline" EntitySet="discipline" />
+          </AssociationSet>
+          <AssociationSet Name="FK__disciplin__id_te__628FA481" Association="Self.FK__disciplin__id_te__628FA481">
+            <End Role="users" EntitySet="users" />
+            <End Role="discipline" EntitySet="discipline" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mark__id_discipl__656C112C" Association="Self.FK__mark__id_discipl__656C112C">
+            <End Role="discipline" EntitySet="discipline" />
+            <End Role="mark" EntitySet="mark" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mark__id_student__66603565" Association="Self.FK__mark__id_student__66603565">
+            <End Role="users" EntitySet="users" />
+            <End Role="mark" EntitySet="mark" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__id_group__5EBF139D" Association="Self.FK__users__id_group__5EBF139D">
+            <End Role="group" EntitySet="group" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Journal_appModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="discipline">
+          <Key>
+            <PropertyRef Name="id_discipline" />
+          </Key>
+          <Property Name="id_discipline" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_discipline" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_group" Type="Int32" />
+          <Property Name="id_teacher" Type="Int32" />
+          <NavigationProperty Name="group" Relationship="Self.FK__disciplin__id_gr__619B8048" FromRole="discipline" ToRole="group" />
+          <NavigationProperty Name="users" Relationship="Self.FK__disciplin__id_te__628FA481" FromRole="discipline" ToRole="users" />
+          <NavigationProperty Name="mark" Relationship="Self.FK__mark__id_discipl__656C112C" FromRole="discipline" ToRole="mark" />
+        </EntityType>
+        <EntityType Name="group">
+          <Key>
+            <PropertyRef Name="id_group" />
+          </Key>
+          <Property Name="id_group" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_group" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Branch_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Branch_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="discipline" Relationship="Self.FK__disciplin__id_gr__619B8048" FromRole="group" ToRole="discipline" />
+          <NavigationProperty Name="users" Relationship="Self.FK__users__id_group__5EBF139D" FromRole="group" ToRole="users" />
+        </EntityType>
+        <EntityType Name="mark">
+          <Key>
+            <PropertyRef Name="id_mark" />
+          </Key>
+          <Property Name="id_mark" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mark" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_mark" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_discipline" Type="Int32" />
+          <Property Name="id_student" Type="Int32" />
+          <NavigationProperty Name="discipline" Relationship="Self.FK__mark__id_discipl__656C112C" FromRole="mark" ToRole="discipline" />
+          <NavigationProperty Name="users" Relationship="Self.FK__mark__id_student__66603565" FromRole="mark" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="is_staff" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_group" Type="Int32" />
+          <NavigationProperty Name="discipline" Relationship="Self.FK__disciplin__id_te__628FA481" FromRole="users" ToRole="discipline" />
+          <NavigationProperty Name="group" Relationship="Self.FK__users__id_group__5EBF139D" FromRole="users" ToRole="group" />
+          <NavigationProperty Name="mark" Relationship="Self.FK__mark__id_student__66603565" FromRole="users" ToRole="mark" />
+        </EntityType>
+        <Association Name="FK__disciplin__id_gr__619B8048">
+          <End Role="group" Type="Self.group" Multiplicity="0..1" />
+          <End Role="discipline" Type="Self.discipline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="discipline">
+              <PropertyRef Name="id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__disciplin__id_te__628FA481">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="discipline" Type="Self.discipline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="discipline">
+              <PropertyRef Name="id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mark__id_discipl__656C112C">
+          <End Role="discipline" Type="Self.discipline" Multiplicity="0..1" />
+          <End Role="mark" Type="Self.mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="discipline">
+              <PropertyRef Name="id_discipline" />
+            </Principal>
+            <Dependent Role="mark">
+              <PropertyRef Name="id_discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__id_group__5EBF139D">
+          <End Role="group" Type="Self.group" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mark__id_student__66603565">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="mark" Type="Self.mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="mark">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Journal_appEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="discipline" EntityType="Self.discipline" />
+          <EntitySet Name="group" EntityType="Self.group" />
+          <EntitySet Name="mark" EntityType="Self.mark" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK__disciplin__id_gr__619B8048" Association="Self.FK__disciplin__id_gr__619B8048">
+            <End Role="group" EntitySet="group" />
+            <End Role="discipline" EntitySet="discipline" />
+          </AssociationSet>
+          <AssociationSet Name="FK__disciplin__id_te__628FA481" Association="Self.FK__disciplin__id_te__628FA481">
+            <End Role="users" EntitySet="users" />
+            <End Role="discipline" EntitySet="discipline" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mark__id_discipl__656C112C" Association="Self.FK__mark__id_discipl__656C112C">
+            <End Role="discipline" EntitySet="discipline" />
+            <End Role="mark" EntitySet="mark" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__id_group__5EBF139D" Association="Self.FK__users__id_group__5EBF139D">
+            <End Role="group" EntitySet="group" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mark__id_student__66603565" Association="Self.FK__mark__id_student__66603565">
+            <End Role="users" EntitySet="users" />
+            <End Role="mark" EntitySet="mark" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Journal_appModelContainer" CdmEntityContainer="Journal_appEntities">
+          <EntitySetMapping Name="discipline">
+            <EntityTypeMapping TypeName="Journal_appModel.discipline">
+              <MappingFragment StoreEntitySet="discipline">
+                <ScalarProperty Name="id_discipline" ColumnName="id_discipline" />
+                <ScalarProperty Name="Name_discipline" ColumnName="Name_discipline" />
+                <ScalarProperty Name="id_group" ColumnName="id_group" />
+                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="group">
+            <EntityTypeMapping TypeName="Journal_appModel.group">
+              <MappingFragment StoreEntitySet="group">
+                <ScalarProperty Name="id_group" ColumnName="id_group" />
+                <ScalarProperty Name="Name_group" ColumnName="Name_group" />
+                <ScalarProperty Name="Branch_code" ColumnName="Branch_code" />
+                <ScalarProperty Name="Branch_name" ColumnName="Branch_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mark">
+            <EntityTypeMapping TypeName="Journal_appModel.mark">
+              <MappingFragment StoreEntitySet="mark">
+                <ScalarProperty Name="id_mark" ColumnName="id_mark" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Date_mark" ColumnName="Date_mark" />
+                <ScalarProperty Name="id_discipline" ColumnName="id_discipline" />
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="Journal_appModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="is_staff" ColumnName="is_staff" />
+                <ScalarProperty Name="id_group" ColumnName="id_group" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

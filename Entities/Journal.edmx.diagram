@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="910cabb49c304600ac942f28a56b756f" Name="Diagram1">
+        <EntityTypeShape EntityType="Journal_appModel.discipline" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Journal_appModel.group" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Journal_appModel.mark" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Journal_appModel.users" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="Journal_appModel.FK__disciplin__id_gr__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="Journal_appModel.FK__disciplin__id_te__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="Journal_appModel.FK__mark__id_discipl__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="Journal_appModel.FK__users__id_group__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="Journal_appModel.FK__mark__id_student__66603565" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
