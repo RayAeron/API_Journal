@@ -11,8 +11,9 @@ namespace API_Journal.Models
         public ResponseGroup(group responsGroup)
         {
             id_group = responsGroup.id_group;
-            Branch_code = responsGroup.Branch_code;
             Name_group = responsGroup.Name_group;
+            Branch_code = responsGroup.Branch_code;
+            Branch_name = responsGroup.Branch_name;
         }
 
         public int id_group { get; set; }

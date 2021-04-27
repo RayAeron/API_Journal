@@ -18,10 +18,10 @@ namespace API_Journal.Controllers
         private Journal_appEntities db = new Journal_appEntities();
 
         // GET: api/groups
-        [ResponseType(typeof(List<ResponseUser>))]
-        public IHttpActionResult GetJournalApp_user()
+        [ResponseType(typeof(List<ResponseGroup>))]
+        public IHttpActionResult Getgroup()
         {
-            return Ok(db.users.ToList().ConvertAll(p => new ResponseUser(p)));
+            return Ok(db.group.ToList().ConvertAll(p => new ResponseGroup(p)));
         }
 
         // GET: api/groups/5
