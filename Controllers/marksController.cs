@@ -27,6 +27,7 @@ namespace API_Journal.Controllers
                        id_discipline = a.id_discipline,
                        Mark = a.Mark,
                        Date_mark = a.Date_mark,
+                       email = Student.Select(ap => ap.Email),
                        discipline = Discipline.Select(ap => ap.Name_discipline),
                        surname_student = Student.Select(ap => ap.Surname),
                        name_student = Student.Select(ap => ap.Name),
