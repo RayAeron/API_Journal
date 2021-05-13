@@ -10,6 +10,7 @@ namespace API_Journal.Models
     {
         public ResponseMark(mark responsMark)
         {
+            id_mark = responsMark.id_mark;
             Mark = responsMark.Mark;
             Date_mark = responsMark.Date_mark;
             id_discipline = (int)responsMark.id_discipline;

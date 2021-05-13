@@ -20,11 +20,12 @@ namespace API_Journal.Controllers
         public IQueryable<object> Getmark()
         {
             return from a in db.mark
+                   join p in db.mark on a.id_mark equals p.id_mark into Mark
                    join p in db.discipline on a.id_discipline equals p.id_discipline into Discipline
                    join p in db.users on a.id_student equals p.id_user into Student
                    select new
                    {
-                       id_discipline = a.id_discipline,
+                       id_mark = a.id_mark,
                        Mark = a.Mark,
                        Date_mark = a.Date_mark,
                        email = Student.Select(ap => ap.Email),
