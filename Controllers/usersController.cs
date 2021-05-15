@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using API_Journal.Entities;
+using API_Journal.Models;
 
 namespace API_Journal.Controllers
 {
@@ -17,20 +18,10 @@ namespace API_Journal.Controllers
         private Journal_appEntities db = new Journal_appEntities();
 
         // GET: api/users
-        public IQueryable<Object> Getusers()
+        [ResponseType(typeof(List<ResponseUser>))]
+        public IHttpActionResult Getusers()
         {
-            return from a in db.users
-                   join p in db.@group on a.id_group equals p.id_group into Group
-                   select new
-                   {
-                       id_user = a.id_user,
-                       surname = a.Surname,
-                       name = a.Name,
-                       patronymic = a.Patronymic,
-                       email = a.Email,
-                       is_staff = a.is_staff,
-                       group_name = Group.Select(ap => ap.Name_group),
-                   };
+            return Ok(db.users.ToList().ConvertAll(p => new ResponseUser(p)));
         }
 
         // GET: api/users/5
