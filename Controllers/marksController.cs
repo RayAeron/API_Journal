@@ -26,8 +26,8 @@ namespace API_Journal.Controllers
                    select new
                    {
                        id_mark = a.id_mark,
-                       Mark = a.Mark,
-                       Date_mark = a.Date_mark,
+                       mark = a.Mark,
+                       date_mark = a.Date_mark,
                        email = Student.Select(ap => ap.Email),
                        discipline = Discipline.Select(ap => ap.Name_discipline),
                        surname_student = Student.Select(ap => ap.Surname),
