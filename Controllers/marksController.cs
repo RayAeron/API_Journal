@@ -28,11 +28,11 @@ namespace API_Journal.Controllers
                        id_mark = a.id_mark,
                        mark = a.Mark,
                        date_mark = a.Date_mark,
-                       email = Student.Select(ap => ap.Email),
-                       discipline = Discipline.Select(ap => ap.Name_discipline),
-                       surname_student = Student.Select(ap => ap.Surname),
-                       name_student = Student.Select(ap => ap.Name),
-                       patronymic_student = Student.Select(ap => ap.Patronymic),
+                       email = Student.Select(ap => ap.Email).FirstOrDefault(),
+                       discipline = Discipline.Select(ap => ap.Name_discipline).FirstOrDefault(),
+                       surname_student = Student.Select(ap => ap.Surname).FirstOrDefault(),
+                       name_student = Student.Select(ap => ap.Name).FirstOrDefault(),
+                       patronymic_student = Student.Select(ap => ap.Patronymic).FirstOrDefault(),
                    };
         }
 
