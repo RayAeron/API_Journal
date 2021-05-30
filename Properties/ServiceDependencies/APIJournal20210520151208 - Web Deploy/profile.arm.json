@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "APIJournal20210428010114",
+      "defaultValue": "APIJournal20210520151208",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }

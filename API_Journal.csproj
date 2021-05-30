@@ -251,7 +251,7 @@
     <Content Include="Entities\Journal.edmx.diagram">
       <DependentUpon>Journal.edmx</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\APIJournal20210428010114 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\APIJournal20210520151208 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

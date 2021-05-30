@@ -16,7 +16,7 @@ namespace API_Journal.Models
             //Patronymic = responseUser.Patronymic;
             Email = responseUser.Email;
             Pass = responseUser.Pass;
-            is_staff = responseUser.is_staff;
+            //is_staff = responseUser.is_staff;
             //id_group = (int)responseUser.id_group;
         }
 
@@ -26,7 +26,7 @@ namespace API_Journal.Models
         //public string Patronymic { get; set; }
         public string Email { get; set; }
         public string Pass { get; set; }
-        public string is_staff { get; set; }
+        //public string is_staff { get; set; }
         //public int id_group { get; set; }
 
     }
